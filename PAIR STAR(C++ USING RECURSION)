@@ -1,0 +1,28 @@
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+void pairStar(char input[]){
+     static int i = 0;
+     int s = strlen(input);
+     if(i>=s){
+      return;
+     }
+     if(input[i] == input[i+1]){
+         for(int j = s + 1;j>i+1;j--){
+             input[j]=input[j-1];
+         }
+         input[i+1]='*';
+         i = i + 2;
+     }else{
+         i++;
+     }
+     pairStar(input);
+}
+
+int main() {
+   char input[100];
+   cin.getline(input, 100);
+   pairStar(input);
+   cout << input << endl;
+}
