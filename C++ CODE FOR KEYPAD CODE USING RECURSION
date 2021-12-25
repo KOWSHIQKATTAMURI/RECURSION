@@ -1,0 +1,42 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int keypad(int num, string output[]){
+if(number == 0){
+        output[0] = "";
+        return 1;
+    }
+    
+        int n = number%10;
+        number = number/10;
+        int smalloutputsize = keypad(number, output);
+    string exput[] = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+    string input = exput[n];
+     int size=smalloutputsize*(input.size());
+    string arr[size];
+    int k=0;
+    for(int i=0; i<smalloutputsize; i++){
+        for(int j=0; j<input.size(); j++){
+            arr[k] = output[i]+input[j];
+            k++;
+        }   
+    }
+    for(int i=0; i<size; i++){
+        output[i] = arr[i];
+    }
+    return input.size()*smalloutputsize;
+}
+}
+
+int main(){
+    int num;
+    cin >> num;
+
+    string output[10000];
+    int count = keypad(num, output);
+    for(int i = 0; i < count && i < 10000; i++){
+        cout << output[i] << endl;
+    }
+    return 0;
+}
