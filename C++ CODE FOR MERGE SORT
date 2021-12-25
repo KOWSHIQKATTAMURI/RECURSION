@@ -1,0 +1,65 @@
+#include<iostream>
+using namespace std;
+
+void merge(int input[], int l, int m, int n){
+    int n1 = m - l + 1;
+    int n2 = n - m;
+    int input1[n1], input2[n2];
+    
+    for(int i = 0; i < n1; i++){
+        input1[i] = input[l+i];
+    }
+    for(int j = 0; j < n2; j++){
+        input2[j] = input[m+1+j];
+    }
+    
+    int i = 0;
+    int j = 0;
+    int k = l;
+    while(i<n1 && j<n2){
+        if(input1[i] <= input2[j]){
+            input[k] = input1[i];
+            i++;
+        }else{
+            input[k] = input2[j];
+            j++;
+        }
+        k++;
+    }
+    while(i<n1){
+        input[k] = input1[i];
+        i++;
+        k++;
+    }
+    while(j<n2){
+        input[k] = input2[j];
+        j++;
+        k++;
+    }
+}
+
+void sort(int input[], int si, int ei){
+       if(si>=ei){
+           return;
+       }
+       int mi = (si+ei)/2;
+       sort(input, si, mi);
+       sort(input, mi + 1, ei);
+       merge(input, si, mi, ei);
+}
+
+void mergeSort(int input[],int size){
+    sort(input, 0, size - 1);
+}
+
+int main(){
+     int length;
+  cin >> length;
+  int* input = new int[length];
+  for(int i=0; i < length; i++)
+    cin >> input[i];
+  mergeSort(input, length);
+  for(int i = 0; i < length; i++) {
+    cout << input[i] << " ";
+  }
+}
