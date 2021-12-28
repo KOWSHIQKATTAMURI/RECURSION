@@ -1,0 +1,39 @@
+#include<iostream>
+#include<cstring>
+#include<cmath>
+
+using namespace std;
+
+void print_subs(string input, string output){
+if(input.length() == 0){
+cout << output << endl;
+return;
+}
+print_subs(input.substr(1), output);
+print_subs(input.substr(1), output + input[0]);
+}
+
+void printKeypad(int num){
+    string exput[] = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+    if(num == 0){
+        return;
+    }
+    int size = trunc(log10(num)) + 1;
+    string j = exput[0];
+       while(size!=0){
+           int n = num%10;
+           string i = exput[n];
+           j += i;
+           num = num/10;
+           size = size - 1;
+       }
+       string input = j;
+       print_subs(input,"");
+}
+
+int main(){
+    int num;
+    cin >> num;
+    printKeypad(num);
+    return 0;
+}
