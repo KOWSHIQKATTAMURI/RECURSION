@@ -1,0 +1,28 @@
+#include<iostream>
+#include<cstring>
+
+using namespace std;
+
+void pad(int n, string output, string exput[]){
+    if(n == 0){
+        cout << output << endl;
+        return;
+    }
+    for(int i = 0;i < exput[n%10].size();i++){
+        pad(n/10,exput[n%10][i]+output,exput);
+    }
+}
+
+void printKeypad(int num){
+    string exput[10] = {"","", "abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+    pad(num,"",exput);
+}
+
+int main(){
+    int num;
+    cin >> num;
+    printKeypad(num);
+    return 0;
+}
+
+
